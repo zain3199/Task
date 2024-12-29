@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Login from "../pages/registration/Login";
 import Signup from "../pages/registration/Signup";
 
-const About = () => {
+const Register = () => {
   const [activeTab, setActiveTab] = useState("signin");
 
   return (
@@ -45,4 +45,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Register;

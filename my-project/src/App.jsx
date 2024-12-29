@@ -5,16 +5,15 @@ import "./App.css";
 import Home from "./pages/Home";
 import Login from "./pages/registration/Login";
 import Signup from "./pages/registration/Signup";
-import About from "./componens/About";
+
+import Register from "./componens/Register";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<About />} />
+          <Route path="/" element={<Register />} />
           <Route path="/signin" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/home" element={<Home />} />
