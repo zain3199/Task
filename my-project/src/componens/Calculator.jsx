@@ -47,7 +47,7 @@ const Calculator = () => {
           Calculator
         </h1>
 
-        <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-2  gap-4 mb-4">
           <input
             type="number"
             value={num1}

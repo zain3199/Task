@@ -6,34 +6,34 @@ import {
 import { auth } from "../../firebase/FirebaseConfig";
 import { useNavigate } from "react-router-dom";
 import ReactLoading from "react-loading"; // Import react-loading
+import { HiEye, HiEyeSlash } from "react-icons/hi2";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const [resetEmail, setResetEmail] = useState(""); // for forgot password functionality
-  const [showReset, setShowReset] = useState(false); // to toggle reset password form visibility
-  const [loading, setLoading] = useState(false); // to manage loading state
+  const [resetEmail, setResetEmail] = useState("");
+  const [showReset, setShowReset] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  // Handle Sign In
   const handleSignIn = async (e) => {
     e.preventDefault();
-    setLoading(true); // Show loading spinner
+    setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setEmail("");
       setPassword("");
       setError(null);
 
-      // Simulate a delay before navigating
       setTimeout(() => {
         alert("Sign-in successful!");
         setLoading(false);
-        navigate("/home"); // Redirect to homepage or dashboard after sign-in
-      }, 2000); // 2-second delay
+        navigate("/home");
+      }, 2000);
     } catch (err) {
-      setLoading(false); // Hide loading spinner
+      setLoading(false);
       setError(err.message);
     }
   };
@@ -49,7 +49,7 @@ const Login = () => {
       await sendPasswordResetEmail(auth, resetEmail);
       alert("Password reset email sent! Please check your inbox.");
       setResetEmail("");
-      setShowReset(false); // Close reset form after email is sent
+      setShowReset(false);
       setError(null);
     } catch (err) {
       setError(err.message);
@@ -58,8 +58,6 @@ const Login = () => {
 
   return (
     <div className="max-w-sm mx-auto p-6 ">
-      <h2 className="text-2xl font-bold text-center mb-4">Sign In</h2>
-
       {loading ? (
         <div className="flex flex-col items-center justify-center space-y-4">
           <ReactLoading type="spin" color="#0000ff" height={50} width={50} />
@@ -70,7 +68,7 @@ const Login = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-lg font-medium text-gray-700"
+              className="block text-xl font-medium text-gray-700"
             >
               Email
             </label>
@@ -84,21 +82,28 @@ const Login = () => {
             />
           </div>
 
-          <div>
+          <div className="relative">
             <label
               htmlFor="password"
-              className="block text-lg font-medium text-gray-700"
+              className="block text-xl font-medium text-gray-700"
             >
               Password
             </label>
             <input
               id="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2  border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-10 text-gray-600"
+            >
+              {showPassword ? <HiEye /> : <HiEyeSlash />}
+            </button>
           </div>
 
           {error && <p className="text-red-500 text-sm">{error}</p>}
@@ -110,7 +115,7 @@ const Login = () => {
           </p>
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-black to-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full bg-gradient-to-r text-xl from-black to-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
             Sign In
           </button>
