@@ -10,7 +10,7 @@ const About = () => {
       className="flex flex-col items-center p-4 pt-16  h-[100vh]"
       style={{
         backgroundImage: "url('/bg.avif')",
-        backgroundRepeat: "no-repeat",
+        backgroundRepeat: "repeat",
         backgroundSize: "100%",
       }}
     >
