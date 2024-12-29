@@ -6,7 +6,7 @@ export const FirebaseOperations = ({
   handleDeleteMessage,
 }) => {
   return (
-    <div className="w-[45%]">
+    <div className="sm:w-[45%]">
       <input
         type="text"
         value={textInput}

@@ -9,8 +9,8 @@ import {
   doc,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { ToastContainer, toast } from "react-toastify"; // Importing Toastify
-import "react-toastify/dist/ReactToastify.css"; // Import the Toastify CSS
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Calculator from "../componens/Calculator";
 import { FirebaseOperations } from "../componens/FirebaseOperations";
 import { ImageOperations } from "../componens/ImageOperations";
@@ -74,15 +74,13 @@ const Home = () => {
     }
   };
 
-  // Trigger Toast Notification
   const handleNotification = () => {
-    toast.success("Notification Message!"); // Show success toast
+    toast.success("Notification Message!");
   };
 
-  // Handle deleting a message
   const handleDeleteMessage = async (messageId) => {
     try {
-      await deleteDoc(doc(db, "messages", messageId)); // Delete from Firestore
+      await deleteDoc(doc(db, "messages", messageId));
       toast.success("Message deleted successfully!");
     } catch (error) {
       console.error("Error deleting message: ", error);
@@ -95,14 +93,14 @@ const Home = () => {
       className="pt-16 h-[100vh] "
       style={{
         backgroundImage: "url('/bg.avif')",
-        backgroundRepeat: "no-repeat",
+        backgroundRepeat: "repeat",
         backgroundSize: "100%",
       }}
     >
-      <div className="flex justify-center space-x-4 py-4">
+      <div className="flex justify-center flex-col sm:flex-row py-2 gap-4 sm:space-x-4 sm:py-4 px-5">
         <button
           onClick={() => setTab(1)}
-          className={`px-4 py-2 text-xl rounded-md ${
+          className={`px-2 py-2 text-xl rounded-md ${
             tab === 1
               ? "bg-gradient-to-r  from-black to-blue-500 text-white"
               : "bg-gray-200"
@@ -142,7 +140,7 @@ const Home = () => {
         </button>
       </div>
 
-      <div className="p-6 flex justify-center ">
+      <div className="sm:p-6 p-1  flex justify-center ">
         {tab === 1 && (
           <div>
             <button
