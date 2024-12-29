@@ -28,7 +28,7 @@ export const FirebaseOperations = ({
           >
             <span>{msg.text}</span>
             <button
-              onClick={() => handleDeleteMessage(msg.id)} // Delete message on click
+              onClick={() => handleDeleteMessage(msg.id)}
               className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
             >
               Delete

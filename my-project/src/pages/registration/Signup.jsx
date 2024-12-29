@@ -10,13 +10,11 @@ const Signup = () => {
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
 
-  // Initialize useNavigate hook
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    // Regular expression for password validation
     const passwordRegex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
 
@@ -33,7 +31,7 @@ const Signup = () => {
       setPassword("");
       setError(null);
       alert("Signup successful!");
-      navigate("/home"); // Redirect to home or sign-in page
+      navigate("/home");
     } catch (err) {
       setError(err.message);
     }
